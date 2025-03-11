@@ -18,6 +18,8 @@ public abstract class SQLConstants {
             "select max(end_page) as max_end_page from public.ctid_chunks where task_name = ?";
     public static final String DDL_TRUNCATE_POSTGRESQL_TABLE_CTID_CHUNKS =
             "truncate table public.ctid_chunks;";
+    public static final String DDL_DROP_POSTGRESQL_TABLE_BUBLIK_OUTBOX =
+            "drop table if exists public.bublik_outbox;";
     public static final String DDL_CREATE_POSTGRESQL_TABLE_CTID_CHUNKS =
             "create table if not exists public.ctid_chunks (" +
             "chunk_id int generated always as identity primary key, " +

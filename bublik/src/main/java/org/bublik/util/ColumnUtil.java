@@ -217,12 +217,13 @@ public class ColumnUtil {
 
     private static void createTableCtidChunks(Connection connection) {
         try {
+            Statement dropTable = connection.createStatement();
+            dropTable.executeUpdate(DDL_DROP_POSTGRESQL_TABLE_BUBLIK_OUTBOX);
+            dropTable.close();
             Statement createTable = connection.createStatement();
-            createTable.executeUpdate(DDL_CREATE_POSTGRESQL_TABLE_CTID_CHUNKS);
+            createTable.executeUpdate(DDL_CREATE_POSTGRESQL_TABLE_BUBLIK_OUTBOX);
             createTable.close();
-            Statement truncateTable = connection.createStatement();
-            truncateTable.executeUpdate(DDL_TRUNCATE_POSTGRESQL_TABLE_CTID_CHUNKS);
-            truncateTable.close();
+            connection.commit();
         } catch (SQLException e) {
             LOGGER.error("{}", getStackTrace(e));
         }
